@@ -1,0 +1,444 @@
+{
+  "clientName": "Thunder Client",
+  "collectionName": "Pawbook API",
+  "collectionId": "pawbook-col-001",
+  "dateExported": "2024-01-01",
+  "version": "1.2",
+  "folders": [
+    { "id": "f-auth",   "name": "🔐 Auth",          "containerId": "" },
+    { "id": "f-users",  "name": "👤 Usuarios",       "containerId": "" },
+    { "id": "f-pets",   "name": "🐾 Mascotas",       "containerId": "" },
+    { "id": "f-posts",  "name": "📸 Publicaciones",  "containerId": "" },
+    { "id": "f-chats",  "name": "💬 Chats",          "containerId": "" },
+    { "id": "f-vets",   "name": "🏥 Veterinarias",   "containerId": "" }
+  ],
+  "requests": [
+
+    {
+      "id": "req-001", "colId": "pawbook-col-001", "containerId": "f-auth",
+      "name": "Registro de usuario",
+      "url": "{{baseUrl}}/auth/registro",
+      "method": "POST",
+      "sortNum": 1,
+      "headers": [{ "name": "Content-Type", "value": "application/json" }],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"nombreCompleto\": \"Juan Perez\",\n  \"email\": \"juan@test.com\",\n  \"password\": \"Test1234\",\n  \"ciudad\": \"Santa Cruz de la Sierra\",\n  \"rol\": \"USUARIO\"\n}"
+      }
+    },
+
+    {
+      "id": "req-002", "colId": "pawbook-col-001", "containerId": "f-auth",
+      "name": "Login",
+      "url": "{{baseUrl}}/auth/login",
+      "method": "POST",
+      "sortNum": 2,
+      "headers": [{ "name": "Content-Type", "value": "application/json" }],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"email\": \"carlos@test.com\",\n  \"password\": \"Test1234!\"\n}"
+      }
+    },
+
+    {
+      "id": "req-003", "colId": "pawbook-col-001", "containerId": "f-auth",
+      "name": "Mi perfil (token requerido)",
+      "url": "{{baseUrl}}/auth/me",
+      "method": "GET",
+      "sortNum": 3,
+      "headers": [{ "name": "Authorization", "value": "Bearer {{token}}" }],
+      "body": { "type": "none" }
+    },
+
+    {
+      "id": "req-004", "colId": "pawbook-col-001", "containerId": "f-auth",
+      "name": "Login inválido (prueba error)",
+      "url": "{{baseUrl}}/auth/login",
+      "method": "POST",
+      "sortNum": 4,
+      "headers": [{ "name": "Content-Type", "value": "application/json" }],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"email\": \"noexiste@test.com\",\n  \"password\": \"wrongpass\"\n}"
+      }
+    },
+
+    {
+      "id": "req-010", "colId": "pawbook-col-001", "containerId": "f-users",
+      "name": "Buscar usuarios",
+      "url": "{{baseUrl}}/usuarios/buscar?q=carlos",
+      "method": "GET",
+      "sortNum": 10,
+      "headers": [{ "name": "Authorization", "value": "Bearer {{token}}" }],
+      "body": { "type": "none" }
+    },
+
+    {
+      "id": "req-011", "colId": "pawbook-col-001", "containerId": "f-users",
+      "name": "Ver perfil de usuario",
+      "url": "{{baseUrl}}/usuarios/{{userId}}",
+      "method": "GET",
+      "sortNum": 11,
+      "headers": [{ "name": "Authorization", "value": "Bearer {{token}}" }],
+      "body": { "type": "none" }
+    },
+
+    {
+      "id": "req-012", "colId": "pawbook-col-001", "containerId": "f-users",
+      "name": "Seguir usuario",
+      "url": "{{baseUrl}}/usuarios/{{userId}}/seguir",
+      "method": "POST",
+      "sortNum": 12,
+      "headers": [{ "name": "Authorization", "value": "Bearer {{token}}" }],
+      "body": { "type": "none" }
+    },
+
+    {
+      "id": "req-013", "colId": "pawbook-col-001", "containerId": "f-users",
+      "name": "Dejar de seguir usuario",
+      "url": "{{baseUrl}}/usuarios/{{userId}}/seguir",
+      "method": "DELETE",
+      "sortNum": 13,
+      "headers": [{ "name": "Authorization", "value": "Bearer {{token}}" }],
+      "body": { "type": "none" }
+    },
+
+    {
+      "id": "req-014", "colId": "pawbook-col-001", "containerId": "f-users",
+      "name": "Ver seguidores de usuario",
+      "url": "{{baseUrl}}/usuarios/{{userId}}/seguidores",
+      "method": "GET",
+      "sortNum": 14,
+      "headers": [{ "name": "Authorization", "value": "Bearer {{token}}" }],
+      "body": { "type": "none" }
+    },
+
+    {
+      "id": "req-020", "colId": "pawbook-col-001", "containerId": "f-pets",
+      "name": "Listar mascotas (todas)",
+      "url": "{{baseUrl}}/mascotas",
+      "method": "GET",
+      "sortNum": 20,
+      "headers": [{ "name": "Authorization", "value": "Bearer {{token}}" }],
+      "body": { "type": "none" }
+    },
+
+    {
+      "id": "req-021", "colId": "pawbook-col-001", "containerId": "f-pets",
+      "name": "Listar mascotas en adopción",
+      "url": "{{baseUrl}}/mascotas?estado=ADOPTION",
+      "method": "GET",
+      "sortNum": 21,
+      "headers": [{ "name": "Authorization", "value": "Bearer {{token}}" }],
+      "body": { "type": "none" }
+    },
+
+    {
+      "id": "req-022", "colId": "pawbook-col-001", "containerId": "f-pets",
+      "name": "Listar mascotas perdidas",
+      "url": "{{baseUrl}}/mascotas?estado=LOST",
+      "method": "GET",
+      "sortNum": 22,
+      "headers": [{ "name": "Authorization", "value": "Bearer {{token}}" }],
+      "body": { "type": "none" }
+    },
+
+    {
+      "id": "req-023", "colId": "pawbook-col-001", "containerId": "f-pets",
+      "name": "Mascotas de un usuario",
+      "url": "{{baseUrl}}/mascotas?ownerId={{userId}}",
+      "method": "GET",
+      "sortNum": 23,
+      "headers": [{ "name": "Authorization", "value": "Bearer {{token}}" }],
+      "body": { "type": "none" }
+    },
+
+    {
+      "id": "req-024", "colId": "pawbook-col-001", "containerId": "f-pets",
+      "name": "Ver mascota por ID",
+      "url": "{{baseUrl}}/mascotas/{{petId}}",
+      "method": "GET",
+      "sortNum": 24,
+      "headers": [{ "name": "Authorization", "value": "Bearer {{token}}" }],
+      "body": { "type": "none" }
+    },
+
+    {
+      "id": "req-025", "colId": "pawbook-col-001", "containerId": "f-pets",
+      "name": "Crear mascota",
+      "url": "{{baseUrl}}/mascotas",
+      "method": "POST",
+      "sortNum": 25,
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{token}}" },
+        { "name": "Content-Type", "value": "application/json" }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"nombre\": \"Max\",\n  \"raza\": \"Beagle\",\n  \"especie\": \"Perro\",\n  \"edadAnios\": 1,\n  \"edadMeses\": 6,\n  \"descripcion\": \"Muy activo y juguetón\"\n}"
+      }
+    },
+
+    {
+      "id": "req-026", "colId": "pawbook-col-001", "containerId": "f-pets",
+      "name": "Cambiar estado mascota a LOST",
+      "url": "{{baseUrl}}/mascotas/{{petId}}",
+      "method": "PUT",
+      "sortNum": 26,
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{token}}" },
+        { "name": "Content-Type", "value": "application/json" }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"estado\": \"LOST\"\n}"
+      }
+    },
+
+    {
+      "id": "req-027", "colId": "pawbook-col-001", "containerId": "f-pets",
+      "name": "Eliminar mascota",
+      "url": "{{baseUrl}}/mascotas/{{petId}}",
+      "method": "DELETE",
+      "sortNum": 27,
+      "headers": [{ "name": "Authorization", "value": "Bearer {{token}}" }],
+      "body": { "type": "none" }
+    },
+
+    {
+      "id": "req-030", "colId": "pawbook-col-001", "containerId": "f-posts",
+      "name": "Feed (todas las publicaciones)",
+      "url": "{{baseUrl}}/publicaciones?pagina=1&limite=10",
+      "method": "GET",
+      "sortNum": 30,
+      "headers": [{ "name": "Authorization", "value": "Bearer {{token}}" }],
+      "body": { "type": "none" }
+    },
+
+    {
+      "id": "req-031", "colId": "pawbook-col-001", "containerId": "f-posts",
+      "name": "Feed filtrado por LOST",
+      "url": "{{baseUrl}}/publicaciones?categoria=LOST",
+      "method": "GET",
+      "sortNum": 31,
+      "headers": [{ "name": "Authorization", "value": "Bearer {{token}}" }],
+      "body": { "type": "none" }
+    },
+
+    {
+      "id": "req-032", "colId": "pawbook-col-001", "containerId": "f-posts",
+      "name": "Feed filtrado por ADOPTION",
+      "url": "{{baseUrl}}/publicaciones?categoria=ADOPTION",
+      "method": "GET",
+      "sortNum": 32,
+      "headers": [{ "name": "Authorization", "value": "Bearer {{token}}" }],
+      "body": { "type": "none" }
+    },
+
+    {
+      "id": "req-033", "colId": "pawbook-col-001", "containerId": "f-posts",
+      "name": "Ver publicación por ID",
+      "url": "{{baseUrl}}/publicaciones/{{postId}}",
+      "method": "GET",
+      "sortNum": 33,
+      "headers": [{ "name": "Authorization", "value": "Bearer {{token}}" }],
+      "body": { "type": "none" }
+    },
+
+    {
+      "id": "req-034", "colId": "pawbook-col-001", "containerId": "f-posts",
+      "name": "Crear publicación",
+      "url": "{{baseUrl}}/publicaciones",
+      "method": "POST",
+      "sortNum": 34,
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{token}}" },
+        { "name": "Content-Type", "value": "application/json" }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"descripcionTexto\": \"Mi perro disfrutando el parque 🐕\",\n  \"categoria\": \"NORMAL\",\n  \"telefonoAutor\": \"77712345\"\n}"
+      }
+    },
+
+    {
+      "id": "req-035", "colId": "pawbook-col-001", "containerId": "f-posts",
+      "name": "Publicación LOST con ubicación",
+      "url": "{{baseUrl}}/publicaciones",
+      "method": "POST",
+      "sortNum": 35,
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{token}}" },
+        { "name": "Content-Type", "value": "application/json" }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"descripcionTexto\": \"🚨 Se perdió mi perro Rocky, zona Equipetrol\",\n  \"categoria\": \"LOST\",\n  \"ubicacionReferencia\": \"Av. San Martín esq. Cañoto, Equipetrol\",\n  \"telefonoAutor\": \"77712345\"\n}"
+      }
+    },
+
+    {
+      "id": "req-036", "colId": "pawbook-col-001", "containerId": "f-posts",
+      "name": "Dar me gusta",
+      "url": "{{baseUrl}}/publicaciones/{{postId}}/me-gusta",
+      "method": "POST",
+      "sortNum": 36,
+      "headers": [{ "name": "Authorization", "value": "Bearer {{token}}" }],
+      "body": { "type": "none" }
+    },
+
+    {
+      "id": "req-037", "colId": "pawbook-col-001", "containerId": "f-posts",
+      "name": "Quitar me gusta",
+      "url": "{{baseUrl}}/publicaciones/{{postId}}/me-gusta",
+      "method": "DELETE",
+      "sortNum": 37,
+      "headers": [{ "name": "Authorization", "value": "Bearer {{token}}" }],
+      "body": { "type": "none" }
+    },
+
+    {
+      "id": "req-038", "colId": "pawbook-col-001", "containerId": "f-posts",
+      "name": "Ver comentarios",
+      "url": "{{baseUrl}}/publicaciones/{{postId}}/comentarios",
+      "method": "GET",
+      "sortNum": 38,
+      "headers": [{ "name": "Authorization", "value": "Bearer {{token}}" }],
+      "body": { "type": "none" }
+    },
+
+    {
+      "id": "req-039", "colId": "pawbook-col-001", "containerId": "f-posts",
+      "name": "Agregar comentario",
+      "url": "{{baseUrl}}/publicaciones/{{postId}}/comentarios",
+      "method": "POST",
+      "sortNum": 39,
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{token}}" },
+        { "name": "Content-Type", "value": "application/json" }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"texto\": \"Qué lindo! 🐾\"\n}"
+      }
+    },
+
+    {
+      "id": "req-040", "colId": "pawbook-col-001", "containerId": "f-posts",
+      "name": "Eliminar publicación",
+      "url": "{{baseUrl}}/publicaciones/{{postId}}",
+      "method": "DELETE",
+      "sortNum": 40,
+      "headers": [{ "name": "Authorization", "value": "Bearer {{token}}" }],
+      "body": { "type": "none" }
+    },
+
+    {
+      "id": "req-050", "colId": "pawbook-col-001", "containerId": "f-chats",
+      "name": "Mis chats (lista + preview)",
+      "url": "{{baseUrl}}/chats",
+      "method": "GET",
+      "sortNum": 50,
+      "headers": [{ "name": "Authorization", "value": "Bearer {{token}}" }],
+      "body": { "type": "none" }
+    },
+
+    {
+      "id": "req-051", "colId": "pawbook-col-001", "containerId": "f-chats",
+      "name": "Iniciar / buscar chat con usuario",
+      "url": "{{baseUrl}}/chats",
+      "method": "POST",
+      "sortNum": 51,
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{token}}" },
+        { "name": "Content-Type", "value": "application/json" }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"otroUsuarioId\": \"{{userId}}\"\n}"
+      }
+    },
+
+    {
+      "id": "req-052", "colId": "pawbook-col-001", "containerId": "f-chats",
+      "name": "Ver mensajes del chat",
+      "url": "{{baseUrl}}/chats/{{chatId}}/mensajes?pagina=1&limite=20",
+      "method": "GET",
+      "sortNum": 52,
+      "headers": [{ "name": "Authorization", "value": "Bearer {{token}}" }],
+      "body": { "type": "none" }
+    },
+
+    {
+      "id": "req-053", "colId": "pawbook-col-001", "containerId": "f-chats",
+      "name": "Enviar mensaje",
+      "url": "{{baseUrl}}/chats/{{chatId}}/mensajes",
+      "method": "POST",
+      "sortNum": 53,
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{token}}" },
+        { "name": "Content-Type", "value": "application/json" }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"texto\": \"Hola! Vi que tienes mascotas en adopción 🐾\"\n}"
+      }
+    },
+
+    {
+      "id": "req-060", "colId": "pawbook-col-001", "containerId": "f-vets",
+      "name": "Listar todas las veterinarias",
+      "url": "{{baseUrl}}/veterinarias",
+      "method": "GET",
+      "sortNum": 60,
+      "headers": [{ "name": "Authorization", "value": "Bearer {{token}}" }],
+      "body": { "type": "none" }
+    },
+
+    {
+      "id": "req-061", "colId": "pawbook-col-001", "containerId": "f-vets",
+      "name": "Filtrar solo VETERINARIA",
+      "url": "{{baseUrl}}/veterinarias?tipo=VETERINARIA",
+      "method": "GET",
+      "sortNum": 61,
+      "headers": [{ "name": "Authorization", "value": "Bearer {{token}}" }],
+      "body": { "type": "none" }
+    },
+
+    {
+      "id": "req-062", "colId": "pawbook-col-001", "containerId": "f-vets",
+      "name": "Filtrar PET_FRIENDLY",
+      "url": "{{baseUrl}}/veterinarias?tipo=PET_FRIENDLY",
+      "method": "GET",
+      "sortNum": 62,
+      "headers": [{ "name": "Authorization", "value": "Bearer {{token}}" }],
+      "body": { "type": "none" }
+    },
+
+    {
+      "id": "req-063", "colId": "pawbook-col-001", "containerId": "f-vets",
+      "name": "Ver veterinaria por ID",
+      "url": "{{baseUrl}}/veterinarias/{{vetId}}",
+      "method": "GET",
+      "sortNum": 63,
+      "headers": [{ "name": "Authorization", "value": "Bearer {{token}}" }],
+      "body": { "type": "none" }
+    }
+
+  ],
+  "envs": [
+    {
+      "id": "env-local",
+      "name": "Local",
+      "data": [
+        { "name": "baseUrl", "value": "http://localhost:3000/api" },
+        { "name": "token",   "value": "PEGA_TU_TOKEN_AQUI_DESPUES_DE_LOGIN" },
+        { "name": "userId",  "value": "a1b2c3d4-0001-0001-0001-000000000001" },
+        { "name": "petId",   "value": "b1b2c3d4-0001-0001-0001-000000000001" },
+        { "name": "postId",  "value": "" },
+        { "name": "chatId",  "value": "" },
+        { "name": "vetId",   "value": "" }
+      ]
+    }
+  ]
+}
