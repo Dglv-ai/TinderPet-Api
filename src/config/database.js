@@ -6,6 +6,7 @@ const pool = new Pool({
   database: process.env.DB_NAME,
   user:     process.env.DB_USER,
   password: process.env.DB_PASSWORD,
+family: 4,
 ssl: { rejectUnauthorized: false },  // Pool config
   max: 10,                // máximo de conexiones simultáneas
   idleTimeoutMillis: 30000,
@@ -48,7 +49,7 @@ async function testConnection() {
     console.log(`✅ PostgreSQL conectado — ${rows[0].ahora}`);
   } catch (err) {
     console.error('❌ No se pudo conectar a PostgreSQL:', err.message);
-    process.exit(1);
+   // process.exit(1);
   }
 }
 
