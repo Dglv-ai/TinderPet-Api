@@ -6,8 +6,7 @@ const pool = new Pool({
   database: process.env.DB_NAME,
   user:     process.env.DB_USER,
   password: process.env.DB_PASSWORD,
-  ssl: process.env.DB_SSL === 'true' ? { rejectUnauthorized: false } : false,
-  // Pool config
+ssl: { rejectUnauthorized: false },  // Pool config
   max: 10,                // máximo de conexiones simultáneas
   idleTimeoutMillis: 30000,
   connectionTimeoutMillis: 5000,
@@ -44,6 +43,7 @@ async function getClient() {
  */
 async function testConnection() {
   try {
+    console.log("Intentando conectar a:", process.env.DB_HOST);
     const { rows } = await query('SELECT NOW() as ahora');
     console.log(`✅ PostgreSQL conectado — ${rows[0].ahora}`);
   } catch (err) {
