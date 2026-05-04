@@ -3,10 +3,11 @@
  * Captura cualquier error no manejado y responde de forma consistente.
  */
 function errorHandler(err, req, res, next) {
-  console.error(`\n❌ Error no manejado [${req.method} ${req.path}]:`, err.message);
-  console.error(err.stack);
-  console.error("Body:", req.body);
-console.error("Params:", req.params);
+  console.error(`\n❌ Error no manejado [${req.method} ${req.path}]:`);
+console.error("👉 err completo:", err);
+console.error("👉 tipo:", typeof err);
+console.error("👉 keys:", Object.keys(err || {}));
+
 
   // Error de Multer (archivo muy grande o tipo inválido)
   if (err.code === 'LIMIT_FILE_SIZE') {
