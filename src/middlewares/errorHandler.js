@@ -4,9 +4,9 @@
  */
 function errorHandler(err, req, res, next) {
   console.error(`\n❌ Error no manejado [${req.method} ${req.path}]:`, err.message);
-  if (process.env.NODE_ENV === 'development') {
-    console.error(err.stack);
-  }
+  console.error(err.stack);
+  console.error("Body:", req.body);
+console.error("Params:", req.params);
 
   // Error de Multer (archivo muy grande o tipo inválido)
   if (err.code === 'LIMIT_FILE_SIZE') {
