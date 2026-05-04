@@ -6,9 +6,9 @@ const PORT = process.env.PORT || 3000;
 
 async function iniciar() {
   try {
-    if (process.env.DB_HOST) {
+    
       await testConnection(); // opcional, NO bloquea
-    }
+    
   } catch (err) {
     console.error("DB error:", err.message);
   }
